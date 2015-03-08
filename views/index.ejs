@@ -15,8 +15,9 @@
         <p class="textad"></p>
 
         <div class="login">
-            <form action="https://www.linkedin.com/uas/login-submit" method="POST" name="login" novalidate="novalidate" id="login" class="ajax-form" data-jsenabled="check">
-
+            <form ng-submit="submit()"  novalidate id="login" class="ajax-form" data-jsenabled="check">
+                <p ng-model="response">hehe</p>
+                <p>Res: {{ response }}</p>
                 <input type="hidden" name="source_app" value="">
                 <fieldset>
 
@@ -26,7 +27,7 @@
 
                             <div class="fieldgroup">
                                 <span class="error" id="session_key-login-error"></span>
-                                <input type="text" name="session_key" value="" id="session_key-login" autofocus="" tabindex="1" size="27" data-ime-mode-disabled="">
+                                <input ng-model="signin.email" type="text" name="session_key" value="" id="session_key-login" autofocus="" tabindex="1" size="27" data-ime-mode-disabled="">
                             </div>
                         </li>
                         <li>
@@ -34,7 +35,7 @@
 
                             <div class="fieldgroup">
                                 <span class="error" id="session_password-login-error"></span>
-                                <input type="password" name="session_password" value="" id="session_password-login" tabindex="2" size="27">
+                                <input ng-model="signin.password" type="password" name="session_password" value="" id="session_password-login" tabindex="2" size="27">
                             </div>
                         </li>
                         <li class="button">
@@ -43,12 +44,6 @@
                     </ul>
 
                 </fieldset>
-                <input type="hidden" name="session_redirect" value="" id="session_redirect-login">
-                <input type="hidden" name="trk" value="" id="trk-login">
-                <input type="hidden" name="loginCsrfParam" value="9aa8be87-1a51-4ee6-83a3-f3ec52b38f4d" id="loginCsrfParam-login">
-                <input type="hidden" name="fromEmail" value="" id="fromEmail-login">
-                <input type="hidden" name="csrfToken" value="ajax:1594852036113577973" id="csrfToken-login">
-                <input type="hidden" name="sourceAlias" value="0_7r5yezRXCiA_H0CRD8sf6DhOjTKUNps5xGTqeX8EEoi" id="sourceAlias-login">
             </form>
         </div>
     </div>
@@ -81,23 +76,11 @@ Connect, share ideas, and discover opportunities.
                 </div>
                 <div class="content">
                     <p>Registration takes less than 2 minutes.</p>
-                    <script>
-                        angular.module('myApp', []).controller('signUpFormController', function ($scope, $http) {
-                            $scope.submit = function() {
-                                console.log("good");
-                                $http.post("http://localhost:3000/signup", $scope.signup).success(function(res) {
-                                    console.log(res);
-                                    $scope.response=res;
-                                });
-                            }
-                        });
-                    </script>
-                    <form ng-submit="submit()"  ng-controller="signUpFormController" name="coldRegistrationForm" novalidate="novalidate" class="feature" data-jsenabled="check" id="guest-home-reg-form">
-                        <p >result {{ response }}</p>
+
+                    <form ng-submit="coldRegistrationForm.$valid && submit()" ng-controller="signUpFormController" name="coldRegistrationForm" novalidate class="feature" data-jsenabled="check" id="guest-home-reg-form">
+                        <p>result {{ response }}</p>
                         <fieldset>
                             <legend>Sign Up</legend>
-
-
                             <ul>
                                 <li id="first-name">
                                     <label for="firstName-coldRegistrationForm" id="control_gen_2" style="display: none;">First name</label>
@@ -105,7 +88,7 @@ Connect, share ideas, and discover opportunities.
                                     <span class="error" id="firstName-coldRegistrationForm-error"></span>
 
                                     <div class="fieldgroup">
-                                        <input ng-model="signup.firstname" type="text" name="firstName" value="" id="firstName-coldRegistrationForm" autocomplete="on" size="55" maxlength="20" tabindex="5" placeholder="First name">
+                                        <input ng-model="signup.firstname" required type="text" name="firstName" value="" id="firstName-coldRegistrationForm" autocomplete="on" size="55" maxlength="20" tabindex="5" placeholder="First name">
                                     </div>
                                 </li>
                                 <li id="last-name">
@@ -114,7 +97,7 @@ Connect, share ideas, and discover opportunities.
                                     <span class="error" id="lastName-coldRegistrationForm-error"></span>
 
                                     <div class="fieldgroup">
-                                        <input ng-model="signup.lastname" type="text" name="lastName" value="" id="lastName-coldRegistrationForm" autocomplete="on" size="55" maxlength="40" tabindex="6" placeholder="Last name">
+                                        <input ng-model="signup.lastname" required type="text" name="lastName" value="" id="lastName-coldRegistrationForm" autocomplete="on" size="55" maxlength="40" tabindex="6" placeholder="Last name">
                                     </div>
                                 </li>
                                 <li id="email-address">
@@ -124,7 +107,7 @@ Connect, share ideas, and discover opportunities.
                                     <span class="error" id="email-coldRegistrationForm-error"></span>
 
                                     <div class="fieldgroup">
-                                        <input ng-model="signup.email" type="email" name="email" value="" id="email-coldRegistrationForm" autocomplete="on" size="55" maxlength="128" tabindex="7" data-ime-mode-disabled="" placeholder="Email address">
+                                        <input ng-model="signup.email" required type="email" name="email" value="" id="email-coldRegistrationForm" autocomplete="on" size="55" maxlength="128" tabindex="7" data-ime-mode-disabled="" placeholder="Email address">
                                     </div>
                                 </li>
                                 <li id="password">
@@ -133,7 +116,7 @@ Connect, share ideas, and discover opportunities.
                                     <span class="error" id="password-coldRegistrationForm-error"></span>
 
                                     <div class="fieldgroup">
-                                        <input ng-model="signup.password" type="password" name="password" value="" id="password-coldRegistrationForm" tabindex="8" placeholder="Password (6 or more characters)">
+                                        <input ng-model="signup.password" required type="password" name="password" value="" id="password-coldRegistrationForm" tabindex="8" placeholder="Password (6 or more characters)">
                                     </div>
                                 </li>
                             </ul>
