@@ -1,21 +1,32 @@
 (function () {
     var app = angular.module('myApp', []);
-//                angular.module('myApp', []).controller('signInFormController', function ($scope, $http) {
-//                    $scope.submit = function() {
-//                        console.log("good");
-//                        $http.post("http://localhost:3000/signin", $scope.signin).success(function(res) {
-//                            console.log(res);
-//                            $scope.response=res;
-//                        });
-//                    }
-//                });
+    console.log("Angular good!");
 
-    app.controller('signUpFormController', ['$scope', '$http', function ($scope, $http) {
-        $scope.submit = function () {
-            $http.post("http://localhost:3000/signup", $scope.signup).success(function (res) {
-                console.log(res);
-                $scope.response = res;
-            });
+    app.controller('SignInFormController', ['$http', function ($http) {
+        this.signinform = {};
+        this.submit = function () {
+            console.log('signin submit');
+            if (this.signinform !== {}) {
+                console.log(this.signinform);
+                $http.post('/signin', this.signinform).success(function (res) {
+                    console.log(res);
+                });
+            }
         }
+    }]);
+
+    app.controller('SignUpFormController', ['$http', function ($http) {
+        console.log("SignUpFormCtrl good!");
+        this.signupform = {};
+        this.submit = function () {
+            console.log('submit good!');
+            if (this.signupform !== {}) {
+                console.log(this.signupform);
+
+                $http.post('/signup', this.signupform).success(function (res) {
+                    console.log(res);
+                });
+            }
+        };
     }]);
 })();

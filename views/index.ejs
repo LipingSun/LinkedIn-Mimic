@@ -17,7 +17,7 @@
         <p class="textad"></p>
 
         <div class="login">
-            <form  ng-controller="SignInFormController as signinCtrl" ng-submit="signinCtrl.submit()" id="login" class="ajax-form">
+            <form name="loginForm" ng-controller="SignInFormController as signinCtrl" ng-submit="loginForm.$valid && signinCtrl.submit()" id="login" class="ajax-form">
                 <!--<p>Res: {{ response }}</p>-->
                 <fieldset>
                     <ul id="control_gen_1">
@@ -26,7 +26,7 @@
 
                             <div class="fieldgroup">
                                 <span class="error" id="session_key-login-error"></span>
-                                <input ng-model="signinCtrl.email" type="text" name="session_key" value=""
+                                <input ng-model="signinCtrl.signinform.email" required type="text" name="session_key" value=""
                                        id="session_key-login" autofocus="" tabindex="1" size="27">
                             </div>
                         </li>
@@ -35,7 +35,7 @@
 
                             <div class="fieldgroup">
                                 <span class="error" id="session_password-login-error"></span>
-                                <input ng-model="signinCtrl.password" type="password" name="session_password"
+                                <input ng-model="signinCtrl.signinform.password" required type="password" name="session_password"
                                        value="" id="session_password-login" tabindex="2" size="27">
                             </div>
                         </li>
@@ -86,9 +86,9 @@
                 </div>
                 <div class="content">
                     <p>Registration takes less than 2 minutes.</p>
-                    <form ng-controller="SignUpFormController as signupCtrl" ng-submit="signupCtrl.submit()"
+                    <form ng-controller="SignUpFormController as signupCtrl" ng-submit="coldRegistrationForm.$valid && signupCtrl.submit()"
                           name="coldRegistrationForm" novalidate class="feature" id="guest-home-reg-form">
-                        <!--<p>firstname {{ signupCtrl.signupform.firstname }}</p>-->
+                        <!--<p>valid {{ coldRegistrationForm.$valid }}</p>-->
                         <fieldset>
                             <legend>Sign Up</legend>
                             <ul>

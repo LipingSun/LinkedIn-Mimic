@@ -1,6 +1,6 @@
 var mysql = require('mysql');
 
-function fetchData(sqlQuery, callback) {
+function query(sqlQuery, callback) {
 
     console.log("\nSQL Query::" + sqlQuery);
 
@@ -10,18 +10,17 @@ function fetchData(sqlQuery, callback) {
         database: 'LinkedIn'
     });
 
-    connection.query(sqlQuery, function (err, rows, fields) {
+    connection.query(sqlQuery, function (err, data, fields) {
         if (err) {
             console.log("ERROR: " + err.message);
         }
         else {
             //console.log("DB Results:" + rows);
-            callback(err, rows);
+            callback(err, data);
         }
     });
     connection.end();
     console.log("\nConnection closed..");
 }
 
-exports.fetchData = fetchData;
-//connection.connect();
+module.exports.query = query;
