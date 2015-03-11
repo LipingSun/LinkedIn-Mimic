@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
+//var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var signup = require('./routes/signup');
 var signin = require('./routes/signin');
+var home = require('./routes/home');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/signup', signup);
 app.use('/signin', signin);
+app.use('/home', home);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

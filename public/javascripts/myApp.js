@@ -8,8 +8,8 @@
             console.log('signin submit');
             if (this.signinform !== {}) {
                 console.log(this.signinform);
-                $http.post('/signin', this.signinform).success(function (res) {
-                    console.log(res);
+                $http.post('/signin', this.signinform).success(function (data, status, headers, config) {
+                    window.location.assign(headers().location);
                 });
             }
         }
