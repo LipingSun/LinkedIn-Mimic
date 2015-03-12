@@ -29,4 +29,13 @@
             }
         };
     }]);
+
+    app.controller('TestController', ['$http', function ($http) {
+        console.log('first');
+        $http.get('/home').success(function (res) {
+            console.log('Session');
+            this.log = res.session;
+            console.log(res.session);
+        });
+    }]);
 })();
