@@ -25,7 +25,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: 'CMPE273',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: { maxAge: 15 * 60 * 1000 }
 }));
 
 app.use('/', routes);
