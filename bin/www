@@ -7,10 +7,10 @@
 var app = require('../app');
 var debug = require('debug')('LinkedIn:server');
 var http = require('http');
-//var mysql = require('../routes/mysql');
+var mysql = require('../routes/mysql');
+
+//mysql.fetch(8, function (err, data){
 //
-//mysql.fetchData('SELECT * FROM user', function (err, row) {
-//    console.log(row[0].email);
 //});
 
 

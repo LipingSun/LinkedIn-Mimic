@@ -13,7 +13,7 @@ router.post('/', function(req, res, next) {
                 req.session.regenerate(function (err) {
                     req.session.email = data[0].email;
                     //if (req.session.email)
-                    //    res.session.email = req.session.email;
+                    //    res.session.fisrtname = req.session.firstname;
                         //console.log('session final: ' + JSON.stringify(req.session));
                     res.location('/home');
                     res.end('Login Success');
