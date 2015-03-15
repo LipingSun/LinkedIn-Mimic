@@ -1,5 +1,6 @@
 var express = require('express');
 var mysql = require('./mysql');
+var time = require('./time');
 var session = require('express-session');
 var router = express.Router();
 
@@ -12,6 +13,13 @@ router.post('/', function(req, res, next) {
             if (req.body.password === data[0].password) {
                 req.session.regenerate(function (err) {
                     req.session.user = data[0];
+                    res.location('/home');
+                    res.end('Login Success');
+                    console.log('login time: ' + time());
+                    var sql = 'UPDATE user SET last_login_time=' + mysql.escape(time()) + ' WHERE user_id='+ req.session.user.user_id;
+                    mysql.query(sql, function (err, data) {
+                        if (err) console.log("DB ERROR: " + err.message);
+                    });
                     res.location('/home');
                     res.end('Login Success');
                 });

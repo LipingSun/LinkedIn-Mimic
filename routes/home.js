@@ -21,6 +21,7 @@ router.get('/user', function (req, res) {
                 firstname: user.firstname,
                 lastname: user.lastname
             },
+            last_login_time: user.last_login_time,
             summary: data[0],
             education: data[1],
             experience: data[2],

@@ -25,5 +25,4 @@ function query(sqlQuery, callback) {
 }
 
 module.exports.query = query;
-module.exports.fetch = fetch;
 module.exports.escape = mysql.escape;
