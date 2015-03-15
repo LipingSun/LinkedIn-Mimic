@@ -3,9 +3,33 @@ var mysql = require('./mysql');
 var router = express.Router();
 
 router.get('/', function (req, res) {
-    console.log('homesession: ' + JSON.stringify(req.session));
-    //res.send(req.session.email);
-    res.render('home', { title: 'Home' });
+    console.log('session: ' + JSON.stringify(req.session.user));
+    res.render('home');
+});
+
+router.get('/user', function (req, res) {
+    var user = req.session.user;
+
+    var sql = 'SELECT * FROM summary WHERE user_id=' + mysql.escape(user.user_id) + ';'
+        + 'SELECT * FROM education WHERE user_id=' + mysql.escape(user.user_id) + ';'
+        + 'SELECT * FROM experience WHERE user_id=' + mysql.escape(user.user_id) + ';'
+        + 'SELECT * FROM skills WHERE user_id=' + mysql.escape(user.user_id) + ';';
+
+    mysql.query(sql, function (err, data) {
+        var userData = {
+            name: {
+                firstname: user.firstname,
+                lastname: user.lastname
+            },
+            summary: data[0],
+            education: data[1],
+            experience: data[2],
+            skills: data[3]
+        };
+        console.log('return data:' + JSON.stringify(userData));
+        res.send(userData);
+    });
+
 });
 
 

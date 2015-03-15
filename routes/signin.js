@@ -11,10 +11,7 @@ router.post('/', function(req, res, next) {
         if (data[0]) {
             if (req.body.password === data[0].password) {
                 req.session.regenerate(function (err) {
-                    req.session.email = data[0].email;
-                    //if (req.session.email)
-                    //    res.session.fisrtname = req.session.firstname;
-                        //console.log('session final: ' + JSON.stringify(req.session));
+                    req.session.user = data[0];
                     res.location('/home');
                     res.end('Login Success');
                 });

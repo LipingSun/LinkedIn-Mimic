@@ -9,7 +9,7 @@ var debug = require('debug')('LinkedIn:server');
 var http = require('http');
 var mysql = require('../routes/mysql');
 
-//mysql.fetch(8, function (err, data){
+//mysql.query('select * from user where user_id=1', function (err, data){
 //
 //});
 
