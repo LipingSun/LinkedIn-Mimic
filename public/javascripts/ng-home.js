@@ -1,31 +1,36 @@
 (function () {
     var app = angular.module('ng-home', []);
     console.log("Angular good!");
-    var user = {
-        name: {
-            firstname: 'abc',
-            lastname: '222'
-        },
-        summary: {
-            content: 'This is sammary'
-        },
-        education: [
-            {
-                school: "sjsu",
-                major: 'se',
-                degree: 'master'
-            },
-            {
-                school: "sjsu",
-                major: 'se',
-                degree: 'master'
-            }
-        ]
-    };
 
-    app.controller('bodyController', [function () {
-        this.user = user;
+    //var user = {
+    //    name: {
+    //        firstname: 'abc',
+    //        lastname: '222'
+    //    },
+    //    summary: {
+    //        content: 'This is sammary'
+    //    },
+    //    education: [
+    //        {
+    //            school: "sjsu",
+    //            major: 'se',
+    //            degree: 'master'
+    //        },
+    //        {
+    //            school: "sjsu",
+    //            major: 'se',
+    //            degree: 'master'
+    //        }
+    //    ]
+    //};
 
+
+    app.controller('bodyController', ['$http', function ($http) {
+        var bodyCtrl = this;
+        $http.get('/home/user').success(function (data, status, headers, config) {
+            console.log(data);
+            bodyCtrl.user = data;
+        });
     }]);
 
     //app.controller('SignInFormController', ['$http', function ($http) {
