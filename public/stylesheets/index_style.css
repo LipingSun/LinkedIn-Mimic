@@ -733,7 +733,8 @@ label {
 }
 
 .new-ghome #main-wrapper {
-    margin-top: 62px
+    margin-top: 62px;
+    margin-bottom: 30px
 }
 
 .new-ghome .alert p strong {
@@ -1023,7 +1024,8 @@ label {
     -webkit-box-shadow: 0 -1px 4px #ccc;
     -moz-box-shadow: 0 -1px 4px #ccc;
     box-shadow: 0 -1px 4px #ccc;
-    padding-bottom: 20px;
+    height: 80px;
+    /*padding-bottom: 1px;*/
     background: #F4F4F4;
     border-top: 1px solid #CDCDCD
 }

@@ -6,7 +6,6 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var signup = require('./routes/signup');
 var signin = require('./routes/signin');
 var signout = require('./routes/signout');
@@ -31,7 +30,6 @@ app.use(session({
 }));
 
 app.use('/', routes);
-app.use('/users', users);
 app.use('/signup', signup);
 app.use('/signin', signin);
 app.use('/signout', signout);
