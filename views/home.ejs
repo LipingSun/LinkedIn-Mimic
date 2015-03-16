@@ -37,9 +37,15 @@
 </div>
 <div id="main">
     <div id="profile-container-wrapper">
+
         <div id="overview" class="profile-container panel panel-default">
             <div class="panel-body">
+            <button ng-click="bodyCtrl.signout()" type="button" class="btn btn-default pull-right">
+                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Sign out
+                </button>
+
                 <h1>{{bodyCtrl.user.name.firstname + ' ' + bodyCtrl.user.name.lastname}}</h1>
+                
                 <h5 ng-repeat="edu in bodyCtrl.user.education">Education: {{edu.school}}</h5>
                 <h5 ng-repeat="exp in bodyCtrl.user.experience">Company: {{exp.company}}</h5>
                 <h5 ng-show="bodyCtrl.user.last_login_time!==null">Last login time: {{bodyCtrl.user.last_login_time}}</h5>

@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
-//var cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var signup = require('./routes/signup');
 var signin = require('./routes/signin');
+var signout = require('./routes/signout');
 var home = require('./routes/home');
 
 var app = express();
@@ -20,7 +21,7 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-//app.use(cookieParser());
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: 'CMPE273',
@@ -33,6 +34,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/signup', signup);
 app.use('/signin', signin);
+app.use('/signout', signout);
 app.use('/home', home);
 
 // catch 404 and forward to error handler
