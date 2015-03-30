@@ -4,6 +4,7 @@
 
     app.controller('bodyController', ['$http', function ($http) {
         var bodyCtrl = this;
+        //this.add = {};
         $http.get('/home/user').success(function (data, status, headers, config) {
             console.log(data);
             bodyCtrl.user = data;
@@ -12,9 +13,16 @@
             $http.get('/signout').success(function (data, status, headers, config) {
                 console.log(data);
                 window.location.assign(headers().location);
-                //bodyCtrl.user = data;
             });
-        }
+        };
+        this.addEducation = function () {
+            //$http.post('/home/user/add').success(function (data, status, headers, config) {
+
+            bodyCtrl.user.education.push(bodyCtrl.add.education);
+            bodyCtrl.add.education = null;
+
+            //})
+        };
     }]);
 
     //app.controller('SignInFormController', ['$http', function ($http) {
