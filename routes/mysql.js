@@ -37,7 +37,7 @@ var myConnectionPool = {
 
 myConnectionPool.createPool = function (num) {
     myConnectionPool.size = num;
-    for (var i = 0; i < num; i++) {
+    for (i = 0; i < num; i++) {
         myConnectionPool.connections.push(
             mysql.createConnection({
                 host: 'localhost',
@@ -48,22 +48,22 @@ myConnectionPool.createPool = function (num) {
         );
     }
     return myConnectionPool;
-};
+}
 
 myConnectionPool.getCon = function() {
     while (true) {
-        for (var i = 0; i < pool.size; i++) {
+        for (i = 0; i < pool.size; i++) {
             if (pool.connections[i].state === "disconnected") {
                 return pool.connections[i];
             }
         }
     }
-};
+}
 
 myConnectionPool.releaseCon = function(con) {
     con.state = "disconnected";
     console.log("\nConnection in pool released..");
-};
+}
 
 myConnectionPool.query = function(sqlQuery, callback) {
     var con = myConnectionPool.getCon();
@@ -77,6 +77,6 @@ myConnectionPool.query = function(sqlQuery, callback) {
         }
         myConnectionPool.releaseCon(con);
     });
-};
+}
 
 module.exports.myConnectionPool = myConnectionPool;
