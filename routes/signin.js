@@ -4,10 +4,33 @@ var time = require('./time');
 var session = require('express-session');
 var crypto = require('crypto');
 var router = express.Router();
+var rpc = require('amqp-rpc').factory({
+    url: "amqp://guest:guest@127.0.0.1:5672"
+});
 
 router.post('/', function(req, res, next) {
     console.log('req: ' + JSON.stringify(req.body));
-    var sql = 'SELECT * FROM user WHERE email="' + req.body.email + '"';
+
+    var rpcReq = {
+        service: 'signin',
+        message: req.body
+    };
+
+    rpc.call('loginService', rpcReq, function(rpcRes) {
+        console.log('results:', rpcRes);
+        if (rpcRes.signin === true) {
+            req.session.regenerate(function (err) {
+                req.session.user = rpcRes.user;
+                res.location('/home');
+                res.end('Login Success');
+            });
+        }
+        else {
+            res.send(rpcRes.value);
+        }
+    });
+
+    /*var sql = 'SELECT * FROM user WHERE email="' + req.body.email + '"';
     mysql.query(sql, function (err, data) {
         //console.log(data[0]);
         if (data[0]) {
@@ -31,7 +54,7 @@ router.post('/', function(req, res, next) {
         } else {
             res.send('Can\'t find this user');
         }
-    });
+    });*/
 });
 
 module.exports = router;
