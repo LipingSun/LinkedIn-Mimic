@@ -7,6 +7,10 @@ var router = express.Router();
 
 router.post('/', function(req, res, next) {
     console.log(req.body);
+    var rpcReq = {
+        service: 'signup',
+        message: req.body
+    };
 
     crypto.randomBytes(16, function(ex, salt) {
         if (ex) throw ex;
