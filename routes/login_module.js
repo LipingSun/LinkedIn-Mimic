@@ -4,13 +4,13 @@ var rpc = require('amqp-rpc').factory({
     url: "amqp://guest:guest@127.0.0.1:5672"
 });
 
-var loginService = {};
+var loginModule = {};
 
-loginService.signup = express.Router();
-loginService.signin = express.Router();
-loginService.signout = express.Router();
+loginModule.signup = express.Router();
+loginModule.signin = express.Router();
+loginModule.signout = express.Router();
 
-loginService.signup.post('/', function(req, res, next) {
+loginModule.signup.post('/', function(req, res, next) {
     console.log(req.body);
     var rpcReq = {
         service: 'signup',
@@ -33,7 +33,7 @@ loginService.signup.post('/', function(req, res, next) {
     });
 });
 
-loginService.signin.post('/', function(req, res, next) {
+loginModule.signin.post('/', function(req, res, next) {
     console.log('req: ' + JSON.stringify(req.body));
 
     var rpcReq = {
@@ -58,10 +58,10 @@ loginService.signin.post('/', function(req, res, next) {
     });
 });
 
-loginService.signout.all('/', function(req, res, next) {
+loginModule.signout.all('/', function(req, res, next) {
     req.session.destroy();
     res.location('/');
     res.render('index');
 });
 
-module.exports = loginService;
+module.exports = loginModule;
