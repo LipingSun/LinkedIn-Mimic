@@ -4,11 +4,11 @@ var rpc = require('amqp-rpc').factory({
     url: "amqp://guest:guest@127.0.0.1:5672"
 });
 
-var memberService = {};
+var memberModule = {};
 
-memberService.searchMember = express.Router();
+memberModule.searchMember = express.Router();
 
-memberService.searchMember.get('/', function(req, res) {
+memberModule.searchMember.get('/', function(req, res) {
     console.log('search: ' + req.query.name);
     var rpcReq = {
         service: 'searchMember',
@@ -20,4 +20,4 @@ memberService.searchMember.get('/', function(req, res) {
     });
 });
 
-module.exports = memberService;
+module.exports = memberModule;
