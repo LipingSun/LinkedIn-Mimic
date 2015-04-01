@@ -7,8 +7,8 @@ var session = require('express-session');
 
 var routes = require('./routes/index');
 var home = require('./routes/home');
-var loginService = require('./routes/login_service');
-var memberService = require('./routes/member_service');
+var loginModule = require('./routes/login_module');
+var memberModule = require('./routes/member_module');
 
 var app = express();
 
@@ -30,10 +30,10 @@ app.use(session({
 
 app.use('/', routes);
 app.use('/home', home);
-app.use('/signup', loginService.signup);
-app.use('/signin', loginService.signin);
-app.use('/signout', loginService.signout);
-app.use('/search', memberService.searchMember);
+app.use('/signup', loginModule.signup);
+app.use('/signin', loginModule.signin);
+app.use('/signout', loginModule.signout);
+app.use('/search', memberModule.searchMember);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
