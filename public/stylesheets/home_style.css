@@ -61,7 +61,7 @@
 	border-width: 1px;
 	margin-left: 5px;
 	margin-right: 5px;
-	position: static;
+	position: relative;
 	background-color: #287bbc;
 	border-color: #1b5480;
 	float: left;
@@ -146,4 +146,36 @@ body {
 	padding-right: 30px;
 	padding-bottom: 30px;
 	padding-left: 30px;
+}
+#search-area {
+	background-color: #FFFFFF;
+	float: left;
+}
+#search-area ul {
+	list-style-type: none;
+	text-align: left;
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	margin-top: 26px;
+	margin-bottom: 0px;
+	border: 1px solid rgba(204,204,204,1.00);
+}
+#search-item a {
+}
+#search-item span {
+	color: rgba(205,205,205,1.00);
+	font-style: normal;
+	font-size: small;
+	font-weight: 100;
+	float: right;
+}
+#search-item {
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+.label {
+	font-size: medium;
+	line-height: 35px;
 }

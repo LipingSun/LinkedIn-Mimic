@@ -29,6 +29,7 @@
                 if (data.success) {
                     console.log(data.users);
                     bodyCtrl.foundUsers = data.users;
+                    bodyCtrl.searchSuccess = true;
                 }
             });
         };
