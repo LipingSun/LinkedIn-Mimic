@@ -8,6 +8,7 @@ var session = require('express-session');
 var routes = require('./routes/index');
 var home = require('./routes/home');
 var loginService = require('./routes/login_service');
+var memberService = require('./routes/member_service');
 
 var app = express();
 
@@ -28,10 +29,11 @@ app.use(session({
 }));
 
 app.use('/', routes);
+app.use('/home', home);
 app.use('/signup', loginService.signup);
 app.use('/signin', loginService.signin);
 app.use('/signout', loginService.signout);
-app.use('/home', home);
+app.use('/search', memberService.searchMember);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -45,7 +47,7 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use(function(err, req, res) {
+    app.use(function(err, req, res, next) {
         res.status(err.status || 500);
         res.render('error', {
             message: err.message,
@@ -56,7 +58,7 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res) {
+app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
         message: err.message,

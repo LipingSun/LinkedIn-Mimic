@@ -10,7 +10,7 @@ loginService.signup = express.Router();
 loginService.signin = express.Router();
 loginService.signout = express.Router();
 
-loginService.signup.post('/', function(req, res) {
+loginService.signup.post('/', function(req, res, next) {
     console.log(req.body);
     var rpcReq = {
         service: 'signup',
@@ -33,7 +33,7 @@ loginService.signup.post('/', function(req, res) {
     });
 });
 
-loginService.signin.post('/', function(req, res) {
+loginService.signin.post('/', function(req, res, next) {
     console.log('req: ' + JSON.stringify(req.body));
 
     var rpcReq = {
@@ -58,7 +58,7 @@ loginService.signin.post('/', function(req, res) {
     });
 });
 
-loginService.signout.all('/', function(req, res) {
+loginService.signout.all('/', function(req, res, next) {
     req.session.destroy();
     res.location('/');
     res.render('index');

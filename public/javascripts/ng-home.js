@@ -5,7 +5,7 @@
     app.controller('bodyController', ['$http', function ($http) {
         var bodyCtrl = this;
         //this.add = {};
-        $http.get('/home/user').success(function (data, status, headers, config) {
+        $http.get('/home/user').success(function (data, status, headers, config, next) {
             console.log(data);
             bodyCtrl.user = data;
         });
@@ -23,42 +23,14 @@
 
             //})
         };
+        this.searchMember = function () {
+            $http.get('/search?name=' + bodyCtrl.searchName).success(function (data, status, headers, config) {
+                console.log("GET data");
+                if (data.success) {
+                    console.log(data.users);
+                    bodyCtrl.foundUsers = data.users;
+                }
+            });
+        };
     }]);
-
-    //app.controller('SignInFormController', ['$http', function ($http) {
-    //    this.signinform = {};
-    //    this.submit = function () {
-    //        console.log('signin submit');
-    //        if (this.signinform !== {}) {
-    //            console.log(this.signinform);
-    //            $http.post('/signin', this.signinform).success(function (data, status, headers, config) {
-    //                window.location.assign(headers().location);
-    //            });
-    //        }
-    //    }
-    //}]);
-
-    //app.controller('SignUpFormController', ['$http', function ($http) {
-    //    console.log("SignUpFormCtrl good!");
-    //    this.signupform = {};
-    //    this.submit = function () {
-    //        console.log('submit good!');
-    //        if (this.signupform !== {}) {
-    //            console.log(this.signupform);
-    //
-    //            $http.post('/signup', this.signupform).success(function (res) {
-    //                console.log(res);
-    //            });
-    //        }
-    //    };
-    //}]);
-
-    //app.controller('TestController', ['$http', function ($http) {
-    //    console.log('first');
-    //    $http.get('/home').success(function (res) {
-    //        console.log('Session');
-    //        this.log = res.session;
-    //        console.log(res.session);
-    //    });
-    //}]);
 })();
