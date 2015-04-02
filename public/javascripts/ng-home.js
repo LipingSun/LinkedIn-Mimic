@@ -26,11 +26,9 @@
         this.searchMember = function () {
             $http.get('/search?name=' + bodyCtrl.searchName).success(function (data, status, headers, config) {
                 console.log("GET data");
-                if (data.success) {
-                    console.log(data.users);
-                    bodyCtrl.foundUsers = data.users;
+                    console.log(data);
+                    bodyCtrl.foundUsers = data;
                     bodyCtrl.searchSuccess = true;
-                }
             });
         };
     }]);

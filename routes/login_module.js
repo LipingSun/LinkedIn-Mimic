@@ -21,7 +21,7 @@ loginModule.signup.post('/', function(req, res, next) {
         if (rpcRes.success === true) {
             req.session.regenerate(function (err) {
                 if (!err) {
-                    req.session.user = rpcRes.user;
+                    req.session.user = rpcRes.data;
                     req.session.user.last_login_time = null;
                     res.location('/home');
                     res.end('Signup Success');
@@ -46,7 +46,7 @@ loginModule.signin.post('/', function(req, res, next) {
         if (rpcRes.success === true) {
             req.session.regenerate(function (err) {
                 if (!err) {
-                    req.session.user = rpcRes.user;
+                    req.session.user = rpcRes.data;
                     res.location('/home');
                     res.end('Login Success');
                 }

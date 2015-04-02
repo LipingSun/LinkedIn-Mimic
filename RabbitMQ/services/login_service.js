@@ -32,7 +32,7 @@ loginService.signup = function (msg, callback) {
 				} else {
 					rpcRes.success = true;
 					rpcRes.value = 'Sign up success';
-					rpcRes.user = data[1][0];
+					rpcRes.data = data[1][0];
 					callback(null, rpcRes);
 				}
 			});
@@ -50,21 +50,21 @@ loginService.signin = function(msg, callback){
 				if (key.equals(data[0].password)) {
 					rpcRes.success = true;
 					rpcRes.value = 'Success Login';
-					rpcRes.user = data[0];
-					sql = 'UPDATE user SET last_login_time=' + mysql.escape(time()) + ' WHERE user_id=' + rpcRes.user.user_id;
+					rpcRes.data = data[0];
+					sql = 'UPDATE user SET last_login_time=' + mysql.escape(time()) + ' WHERE user_id=' + rpcRes.data.user_id;
 					mysql.query(sql, function (err, data) {
 						if (err) console.log("DB ERROR: " + err.message);
 					});
 					callback(null, rpcRes);
 				} else {
 					rpcRes.success = false;
-					rpcRes.value('Wrong Password');
+					rpcRes.value = 'Wrong Password';
 					callback(null, rpcRes);
 				}
 			});
 		} else {
 			rpcRes.success = false;
-			rpcRes.value('Can\'t find this user');
+			rpcRes.value = 'Can\'t find this user';
 			callback(null, rpcRes);
 		}
 	});

@@ -7,6 +7,8 @@ var rpc = require('amqp-rpc').factory({
 var memberModule = {};
 
 memberModule.searchMember = express.Router();
+memberModule.sendInvitation = express.Router();
+memberModule.acceptInvitation = express.Router();
 
 memberModule.searchMember.get('/', function(req, res) {
     console.log('search: ' + req.query.name);
@@ -15,8 +17,46 @@ memberModule.searchMember.get('/', function(req, res) {
         message: req.query
     };
     rpc.call('memberServiceQueue', rpcReq, function(rpcRes) {
-        res.send(rpcRes);
-        console.log('results:', rpcRes);
+        if (rpcRes.success === true) {
+            console.log('results:', rpcRes.data);
+            res.send(rpcRes.data);
+        }
+        else {
+            res.send(rpcRes.value);
+        }
+    });
+});
+
+memberModule.sendInvitation.get('/', function(req, res) {
+    var rpcReq = {
+        service: 'sendInvitation',
+        message: req.query
+    };
+    rpc.call('memberServiceQueue', rpcReq, function(rpcRes) {
+        if (rpcRes.success === true) {
+            console.log('results:', rpcRes.data);
+            res.send(rpcRes.data);
+        }
+        else {
+            res.send(rpcRes.value);
+        }
+    });
+});
+
+memberModule.acceptInvitation.get('/', function(req, res) {
+    console.log('search: ' + req.query.name);
+    var rpcReq = {
+        service: 'acceptInvitation',
+        message: req.query
+    };
+    rpc.call('memberServiceQueue', rpcReq, function(rpcRes) {
+        if (rpcRes.success === true) {
+            console.log('results:', rpcRes.data);
+            res.send(rpcRes.data);
+        }
+        else {
+            res.send(rpcRes.value);
+        }
     });
 });
 
