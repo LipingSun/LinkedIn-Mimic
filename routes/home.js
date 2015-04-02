@@ -31,7 +31,8 @@ router.get('/user', function (req, res) {
             summary: data[0],
             education: data[1],
             experience: data[2],
-            skills: data[3]
+            skills: data[3],
+            connections: data[4]
         };
         console.log('return data:' + JSON.stringify(userData));
         res.send(userData);
