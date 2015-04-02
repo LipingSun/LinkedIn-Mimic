@@ -162,8 +162,6 @@ body {
 	margin-bottom: 0px;
 	border: 1px solid rgba(204,204,204,1.00);
 }
-#search-item a {
-}
 #search-item span {
 	color: rgba(205,205,205,1.00);
 	font-style: normal;
@@ -178,6 +176,7 @@ body {
 .label {
 	font-size: medium;
 	line-height: 35px;
+	margin-left: 5px;
 }
 #request {
 	color: rgba(189,189,189,1.00);
