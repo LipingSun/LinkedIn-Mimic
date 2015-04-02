@@ -65,14 +65,14 @@
         <div id="summary" class="profile-container panel panel-default">
             <div class="panel-body">
                 <h3>Summary</h3>
-                <button ng-click="summaryEditShow=!summaryEditShow" ng-show="bodyCtrl.user.summary[0].content" type="button" class="btn btn-default pull-right">
+                <button ng-click="bodyCtrl.summaryEditShow=!bodyCtrl.summaryEditShow" ng-show="bodyCtrl.user.summary[0].content" type="button" class="btn btn-default pull-right">
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                 </button>
                 <form>
                     <div class="form-group">
-                        <p ng-hide="this.summaryEditShow" class="form-control-static">
+                        <p ng-hide="bodyCtrl.summaryEditShow" class="form-control-static">
                             {{bodyCtrl.user.summary[0].content}}</p>
-                        <textarea ng-show="this.summaryEditShow" class="form-control"
+                        <textarea ng-show="bodyCtrl.summaryEditShow" class="form-control"
                                   ng-model="bodyCtrl.user.summary[0].content"></textarea>
                     </div>
                 </form>
@@ -87,52 +87,52 @@
                 <button ng-click="summaryAddShow=true" class="add-info-button">Add summary</button>
             </div>
         </div>
-        <div id="education" class="profile-container panel panel-default">
+        <div id="education" class="profile-container panel panel-default" ng-init="bodyCtrl.eduEditShow=false; bodyCtrl.eduAddShow=false">
             <div class="panel-body">
                 <h3>Education</h3>
                 <blockquote ng-repeat="edu in bodyCtrl.user.education">
                     <form>
-                        <button ng-click="eduEditShow=!eduEditShow" type="button" class="btn btn-default pull-right">
+                        <button ng-click="bodyCtrl.eduEditShow=!bodyCtrl.eduEditShow" type="button" class="btn btn-default pull-right">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </button>
                         <div class="form-group">
                             <label>School</label>
-                            <input ng-show="this.eduEditShow" type="text" class="form-control" ng-model="edu.school">
-                            <p ng-hide="this.eduEditShow" class="form-control-static">{{edu.school}}</p>
+                            <input ng-show="bodyCtrl.eduEditShow" type="text" class="form-control" ng-model="edu.school">
+                            <p ng-hide="bodyCtrl.eduEditShow" class="form-control-static">{{edu.school}}</p>
                         </div>
                         <div class="form-group">
                             <label>Major</label>
-                            <p ng-hide="this.eduEditShow" class="form-control-static">{{edu.major}}</p>
-                            <input ng-show="this.eduEditShow" type="text" class="form-control" ng-model="edu.major">
+                            <p ng-hide="bodyCtrl.eduEditShow" class="form-control-static">{{edu.major}}</p>
+                            <input ng-show="bodyCtrl.eduEditShow" type="text" class="form-control" ng-model="edu.major">
                         </div>
                         <div class="form-group">
                             <label>Degree</label>
-                            <p ng-hide="this.eduEditShow" class="form-control-static">{{edu.degree}}</p>
-                            <input ng-show="this.eduEditShow" type="text" class="form-control" ng-model="edu.degree">
+                            <p ng-hide="bodyCtrl.eduEditShow" class="form-control-static">{{edu.degree}}</p>
+                            <input ng-show="bodyCtrl.eduEditShow" type="text" class="form-control" ng-model="edu.degree">
                         </div>
                         <div class="form-group">
                             <label>Start Time</label>
-                            <p ng-hide="this.eduEditShow" class="form-control-static">{{edu.start_date}}</p>
-                            <input ng-show="this.eduEditShow" type="text" class="form-control"
+                            <p ng-hide="bodyCtrl.eduEditShow" class="form-control-static">{{edu.start_date}}</p>
+                            <input ng-show="bodyCtrl.eduEditShow" type="text" class="form-control"
                                    ng-model="edu.start_date">
                         </div>
                         <div class="form-group">
                             <label>End Time</label>
-                            <p ng-hide="this.eduEditShow" class="form-control-static">{{edu.end_date}}</p>
-                            <input ng-show="this.eduEditShow" type="text" class="form-control" ng-model="edu.end_date">
+                            <p ng-hide="bodyCtrl.eduEditShow" class="form-control-static">{{edu.end_date}}</p>
+                            <input ng-show="bodyCtrl.eduEditShow" type="text" class="form-control" ng-model="edu.end_date">
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <p ng-hide="this.eduEditShow" class="form-control-static">{{edu.description}}</p>
-                            <textarea ng-show="this.eduEditShow" class="form-control"
+                            <p ng-hide="bodyCtrl.eduEditShow" class="form-control-static">{{edu.description}}</p>
+                            <textarea ng-show="bodyCtrl.eduEditShow" class="form-control"
                                       ng-model="edu.description"></textarea>
                         </div>
-                        <input class="btn btn-success btn-block" ng-show="this.eduEditShow" type="submit" value="Save">
-                        <input class="btn btn-danger btn-block" ng-show="this.eduEditShow" type="submit" value="Remove">
+                        <input class="btn btn-success btn-block" ng-show="bodyCtrl.eduEditShow" type="submit" value="Save">
+                        <input class="btn btn-danger btn-block" ng-show="bodyCtrl.eduEditShow" type="submit" value="Remove">
                     </form>
                 </blockquote>
             </div>
-            <div class="add-info-panel" ng-show="eduAddShow">
+            <div class="add-info-panel" ng-show="bodyCtrl.eduAddShow">
                 <hr>
                 <div class="panel-body">
                     <blockquote>
@@ -162,59 +162,104 @@
                                 <textarea class="form-control" ng-model="bodyCtrl.add.education.description"></textarea>
                             </div>
                             <input class="btn btn-success btn-block" type="submit" value="Save"
-                                   ng-click="bodyCtrl.addEducation(); eduAddShow = false;">
+                                   ng-click="bodyCtrl.addEducation(); bodyCtrl.eduAddShow = false;">
                             <input class="btn btn-danger btn-block" type="button" value="Cancel"
-                                   ng-click="bodyCtrl.add.education = null; eduAddShow = false;">
+                                   ng-click="bodyCtrl.add.education = null; bodyCtrl.eduAddShow = false;">
                         </form>
                     </blockquote>
                 </div>
             </div>
-            <div ng-hide="bodyCtrl.user.edu.content" class="panel-footer profile-footer">
-                <button ng-click="eduAddShow=true" class="add-info-button">Add education</button>
+            <div ng-hide="bodyCtrl.eduAddShow||bodyCtrl.eduEditShow" class="panel-footer profile-footer">
+                <button ng-click="bodyCtrl.eduAddShow=true" class="add-info-button">Add education</button>
             </div>
         </div>
-        <div id="experience" class="profile-container panel panel-default">
+        <div id="experience" class="profile-container panel panel-default" ng-init="bodyCtrl.expEditShow=false; bodyCtrl.expAddShow=false">
             <div class="panel-body">
-                <h3>Experience</h3>
-                <ul>
-                    <li>
-                    <button ng-click="expEditShow=!expEditShow" type="button" class="btn btn-default pull-right">
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    </button>
-                    </li>
-                </ul>
+                <h3>experience</h3>
+                <blockquote ng-repeat="exp in bodyCtrl.user.experience">
+                    <form>
+                        <button ng-click="bodyCtrl.expEditShow=!bodyCtrl.expEditShow" type="button" class="btn btn-default pull-right">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </button>
+                        <div class="form-group">
+                            <label>Company</label>
+                            <input ng-show="bodyCtrl.expEditShow" type="text" class="form-control" ng-model="exp.company">
+                            <p ng-hide="bodyCtrl.expEditShow" class="form-control-static">{{exp.company}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <p ng-hide="bodyCtrl.expEditShow" class="form-control-static">{{exp.title}}</p>
+                            <input ng-show="bodyCtrl.expEditShow" type="text" class="form-control" ng-model="exp.title">
+                        </div>
+                        <div class="form-group">
+                            <label>Start Time</label>
+                            <p ng-hide="bodyCtrl.expEditShow" class="form-control-static">{{exp.start_date}}</p>
+                            <input ng-show="bodyCtrl.expEditShow" type="text" class="form-control"
+                                   ng-model="exp.start_date">
+                        </div>
+                        <div class="form-group">
+                            <label>End Time</label>
+                            <p ng-hide="bodyCtrl.expEditShow" class="form-control-static">{{exp.end_date}}</p>
+                            <input ng-show="bodyCtrl.expEditShow" type="text" class="form-control" ng-model="exp.end_date">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <p ng-hide="bodyCtrl.expEditShow" class="form-control-static">{{exp.description}}</p>
+                            <textarea ng-show="bodyCtrl.expEditShow" class="form-control"
+                                      ng-model="exp.description"></textarea>
+                        </div>
+                        <input class="btn btn-success btn-block" ng-show="bodyCtrl.expEditShow" type="submit" value="Save">
+                        <input class="btn btn-danger btn-block" ng-show="bodyCtrl.expEditShow" type="submit" value="Remove">
+                    </form>
+                </blockquote>
             </div>
-            <div class="add-info-panel" hidden="">
+            <div class="add-info-panel" ng-show="bodyCtrl.expAddShow">
                 <hr>
                 <div class="panel-body">
-                    <h3></h3>
+                    <blockquote>
+                        <form>
+                            <div class="form-group">
+                                <label>Company</label>
+                                <input type="text" class="form-control" ng-model="bodyCtrl.add.experience.company">
+                            </div>
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input type="text" class="form-control" ng-model="bodyCtrl.add.experience.title">
+                            </div>
+                            <div class="form-group">
+                                <label>Start Time</label>
+                                <input type="text" class="form-control" ng-model="bodyCtrl.add.experience.start_date">
+                            </div>
+                            <div class="form-group">
+                                <label>End Time</label>
+                                <input type="text" class="form-control" ng-model="bodyCtrl.add.experience.end_date">
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea class="form-control" ng-model="bodyCtrl.add.experience.description"></textarea>
+                            </div>
+                            <input class="btn btn-success btn-block" type="submit" value="Save"
+                                   ng-click="bodyCtrl.addexperience(); bodyCtrl.expAddShow = false;">
+                            <input class="btn btn-danger btn-block" type="button" value="Cancel"
+                                   ng-click="bodyCtrl.add.experience = null; bodyCtrl.expAddShow = false;">
+                        </form>
+                    </blockquote>
                 </div>
             </div>
-            <div class="panel-footer profile-footer">
-                <button class="add-info-button">Add experience</button>
+            <div ng-hide="bodyCtrl.expAddShow||bodyCtrl.expEditShow" class="panel-footer profile-footer">
+                <button ng-click="bodyCtrl.expAddShow=true" class="add-info-button">Add experience</button>
             </div>
         </div>
         <div id="skills" class="profile-container panel panel-default">
             <div class="panel-body">
                 <h3>Skills</h3>
                 <div>
-                <span class="label label-primary">test</span>
-                <span class="label label-primary">test</span>
-                <span class="label label-primary">test</span>
-                <span class="label label-primary">test</span>
-                <span class="label label-primary">test</span>
-                <span class="label label-primary">test</span>
-                <span class="label label-primary">test</span>
-                <span class="label label-primary">test</span>
-                <span class="label label-primary">test</span>
-                <span class="label label-primary">test</span>
-                <span class="label label-primary">test</span>
-                <span class="label label-primary">test</span>
-                <span class="label label-primary">test</span>
-                <span class="label label-primary">test</span>
-                <span class="label label-primary">test</span>
-                <span class="label label-primary">test</span>
-                
+                    <span class="label label-primary">C++</span>
+                    <span class="label label-primary">Java</span>
+                    <span class="label label-primary">SQL</span>
+                    <span class="label label-primary">JavaScript</span>
+                    <span class="label label-primary">Node.js</span>
+                    <span class="label label-primary">Angular.js</span>
                 </div>
             </div>
             <div class="add-info-panel" hidden="">
@@ -230,9 +275,18 @@
         <div id="connections" class="profile-container panel panel-default">
             <div class="panel-body">
                 <h3>Connections</h3>
+                <ul>
+                    <li>Jason Smith</li>
+                    <li>Sophia Smith</li>
+                    <li>John Williams
+                        <span id="request">Connection Request:</span>
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true">Accept</span>
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true">Decline</span>
+                    </li>
+                </ul>
             </div>
             <div class="panel-footer profile-footer">
-            <button class="add-info-button">Add Connections</button>
+                <button class="add-info-button">Add Connections</button>
             </div>
         </div>
     </div>
