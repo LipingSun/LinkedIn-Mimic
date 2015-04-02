@@ -179,3 +179,22 @@ body {
 	font-size: medium;
 	line-height: 35px;
 }
+#request {
+	color: rgba(189,189,189,1.00);
+	font-size: small;
+	margin-left: 10px;
+}
+#connections .panel-body ul li .glyphicon.glyphicon-ok {
+	margin-left: 5px;
+	font-size: x-small;
+	vertical-align: text-top;
+	margin-top: 2px;
+	color: rgba(5,255,0,1.00);
+}
+#connections .panel-body ul li .glyphicon.glyphicon-remove {
+	margin-left: 5px;
+	font-size: x-small;
+	vertical-align: text-top;
+	margin-top: 2px;
+	color: rgba(255,0,4,1.00);
+}
