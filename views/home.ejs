@@ -254,12 +254,7 @@
             <div class="panel-body">
                 <h3>Skills</h3>
                 <div>
-                    <span class="label label-primary">C++</span>
-                    <span class="label label-primary">Java</span>
-                    <span class="label label-primary">SQL</span>
-                    <span class="label label-primary">JavaScript</span>
-                    <span class="label label-primary">Node.js</span>
-                    <span class="label label-primary">Angular.js</span>
+                    <span class="label label-primary" ng-repeat="skill in bodyCtrl.user.skills">{{ skill.tag_name }}</span>
                 </div>
             </div>
             <div class="add-info-panel" hidden="">
@@ -276,12 +271,11 @@
             <div class="panel-body">
                 <h3>Connections</h3>
                 <ul>
-                    <li>Jason Smith</li>
-                    <li>Sophia Smith</li>
-                    <li>John Williams
-                        <span id="request">Connection Request:</span>
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true">Accept</span>
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true">Decline</span>
+                    <li ng-repeat="connection in bodyCtrl.user.connections">
+                        {{ connection.firstname + ' ' + connection.lastname }}
+                        <!--<span id="request">Connection Request:</span>-->
+                        <!--<span class="glyphicon glyphicon-ok" aria-hidden="true">Accept</span>-->
+                        <!--<span class="glyphicon glyphicon-remove" aria-hidden="true">Decline</span>-->
                     </li>
                 </ul>
             </div>
