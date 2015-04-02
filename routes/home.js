@@ -18,7 +18,8 @@ router.get('/user', function (req, res) {
     var sql = 'SELECT * FROM summary WHERE user_id=' + mysql.escape(user.user_id) + ';'
         + 'SELECT * FROM education WHERE user_id=' + mysql.escape(user.user_id) + ';'
         + 'SELECT * FROM experience WHERE user_id=' + mysql.escape(user.user_id) + ';'
-        + 'SELECT * FROM skills WHERE user_id=' + mysql.escape(user.user_id) + ';';
+        + 'SELECT * FROM skills WHERE user_id=' + mysql.escape(user.user_id) + ';'
+        + 'SELECT * FROM connections WHERE user_id=' + mysql.escape(user.user_id) + ';';
 
     mysql.query(sql, function (err, data) {
         var userData = {
