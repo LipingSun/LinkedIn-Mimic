@@ -3,12 +3,13 @@ var mysql = require('./mysql');
 var router = express.Router();
 
 router.get('/', function (req, res) {
-    if (req.session.user) {
-        console.log('session: ' + JSON.stringify(req.session.user));
-        res.render('home');
-    } else {
-        res.render('index');
-    }
+    res.render('home');
+    //if (req.session.user) {
+    //    console.log('session: ' + JSON.stringify(req.session.user));
+    //    res.render('home');
+    //} else {
+    //    res.render('index');
+    //}
 
 });
 
